@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['base_url'] = 'https://inspect.rdgjt.com/';
+$config['base_url'] = 'http://localhost/inspectRindang/';
 
 $config['index_page'] = '';
 

@@ -31480,3 +31480,42 @@ INFO - 2025-05-21 02:39:26 --> Controller Class Initialized
 INFO - 2025-05-21 02:39:26 --> Model Class Initialized
 INFO - 2025-05-21 09:39:26 --> Final output sent to browser
 DEBUG - 2025-05-21 09:39:26 --> Total execution time: 0.0375
+INFO - 2025-05-21 09:29:52 --> Config Class Initialized
+INFO - 2025-05-21 09:29:52 --> Hooks Class Initialized
+DEBUG - 2025-05-21 09:29:52 --> UTF-8 Support Enabled
+INFO - 2025-05-21 09:29:52 --> Utf8 Class Initialized
+INFO - 2025-05-21 09:29:52 --> URI Class Initialized
+DEBUG - 2025-05-21 09:29:52 --> No URI present. Default controller set.
+INFO - 2025-05-21 09:29:52 --> Router Class Initialized
+INFO - 2025-05-21 09:29:52 --> Output Class Initialized
+INFO - 2025-05-21 09:29:52 --> Security Class Initialized
+DEBUG - 2025-05-21 09:29:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-05-21 09:29:52 --> Input Class Initialized
+INFO - 2025-05-21 09:29:52 --> Language Class Initialized
+INFO - 2025-05-21 09:29:52 --> Loader Class Initialized
+INFO - 2025-05-21 09:29:52 --> Helper loaded: security_helper
+INFO - 2025-05-21 09:29:52 --> Helper loaded: url_helper
+INFO - 2025-05-21 09:29:52 --> Helper loaded: form_helper
+INFO - 2025-05-21 09:29:52 --> Database Driver Class Initialized
+ERROR - 2025-05-21 09:29:52 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'u670640922_grandrjs'@'localhost' (using password: YES) C:\xampp\htdocs\inspectRindang\system\database\drivers\mysqli\mysqli_driver.php 201
+ERROR - 2025-05-21 09:29:52 --> Unable to connect to the database
+INFO - 2025-05-21 09:29:52 --> Language file loaded: language/english/db_lang.php
+INFO - 2025-05-21 09:29:58 --> Config Class Initialized
+INFO - 2025-05-21 09:29:58 --> Hooks Class Initialized
+DEBUG - 2025-05-21 09:29:58 --> UTF-8 Support Enabled
+INFO - 2025-05-21 09:29:58 --> Utf8 Class Initialized
+INFO - 2025-05-21 09:29:58 --> URI Class Initialized
+INFO - 2025-05-21 09:29:58 --> Router Class Initialized
+INFO - 2025-05-21 09:29:58 --> Output Class Initialized
+INFO - 2025-05-21 09:29:58 --> Security Class Initialized
+DEBUG - 2025-05-21 09:29:58 --> Global POST, GET and COOKIE data sanitized
+INFO - 2025-05-21 09:29:58 --> Input Class Initialized
+INFO - 2025-05-21 09:29:58 --> Language Class Initialized
+INFO - 2025-05-21 09:29:58 --> Loader Class Initialized
+INFO - 2025-05-21 09:29:58 --> Helper loaded: security_helper
+INFO - 2025-05-21 09:29:58 --> Helper loaded: url_helper
+INFO - 2025-05-21 09:29:58 --> Helper loaded: form_helper
+INFO - 2025-05-21 09:29:58 --> Database Driver Class Initialized
+ERROR - 2025-05-21 09:29:58 --> Severity: Warning --> mysqli::real_connect(): (HY000/1045): Access denied for user 'u670640922_grandrjs'@'localhost' (using password: YES) C:\xampp\htdocs\inspectRindang\system\database\drivers\mysqli\mysqli_driver.php 201
+ERROR - 2025-05-21 09:29:58 --> Unable to connect to the database
+INFO - 2025-05-21 09:29:58 --> Language file loaded: language/english/db_lang.php

@@ -692,7 +692,8 @@ function validasi2(){
                         <td><strong>Ukuran</strong></td>
                         <td><strong>Beam</strong></td>
                         <td><strong>Del</strong></td>
-                    </tr>'; }
+                    </tr>'; 
+            }
             $total = 0; $jml_roll = 0;
             foreach($query->result() as $no => $val){
                 $nos = $no+1;
@@ -727,11 +728,13 @@ function validasi2(){
             }
             if(fmod($total, 1) !== 0.00){
                 $pjg = number_format($total,2,',','.');
+                $totalupdate = round($total,2);
             } else {
                 $pjg = number_format($total,0,',','.');
+                $totalupdate = round($total,0);
             }
             echo "<tr><td colspan='3'><strong>Total</strong></td><td>".$pjg."</td><td colspan='2'></td>";
-            $this->data_model->updatedata('kd',$kd,'new_tb_packinglist',['jumlah_roll'=>$jml_roll,'ttl_panjang'=>round($total,1)]);
+            $this->data_model->updatedata('kd',$kd,'new_tb_packinglist',['jumlah_roll'=>$jml_roll,'ttl_panjang'=>$totalupdate]);
         } else {
             echo '<tr>
                         <td><strong>No</strong></td>
