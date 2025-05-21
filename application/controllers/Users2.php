@@ -651,6 +651,11 @@ function delisi_jual(){
     $id_isi = $this->input->post("kode");
     $cekstatus = $this->data_model->get_byid('new_tb_isi', ['id_isi'=>$id_isi]);
     $kode_roll = $cekstatus->row("kode");
+    $kd = $cekstatus->row("kd");
+    if (substr($kd, 0, 3) === 'PBC') {
+        // Sama artinya dengan str_starts_with
+        $this->data_model->updatedata('kode_roll',$kode_roll,'ab_non_ori',['posisi'=>'Pusatex']);
+    }
     $this->data_model->updatedata('kode_roll',$kode_roll,'data_fol',['posisi'=>'Pusatex']);
     $this->db->query("DELETE FROM new_tb_isi WHERE id_isi='$id_isi'");
     echo json_encode(array("statusCode"=>200, "psn"=>$kode_roll));
@@ -807,6 +812,35 @@ function validasi2(){
     }
 
 } //end
+function inputstokrjsjualbc(){
+    $kode = $this->input->post("selection");
+    $pkg = $this->input->post("pkg");
+    $_kode = $this->data_model->get_byid('ab_non_ori',['kode_roll'=>$kode]);
+    if($_kode->num_rows() == 1){
+        $_posisi = $_kode->row("posisi");
+        $_thisukr = $_kode->row("ukuran");
+        $_konstruksi = $_kode->row("konstruksi");
+        if($_posisi == "Pusatex"){
+            $this->data_model->updatedata('kode_roll',$kode,'ab_non_ori',['posisi'=>$pkg]);
+            $this->data_model->saved('new_tb_isi',[
+                'kd'=>strtoupper($pkg), 'konstruksi'=>$_konstruksi, 'siap_jual'=>'y', 'kode'=>$kode, 'ukuran'=>$_thisukr, 'status'=>'oke', 'satuan'=>'Meter', 'validasi'=>'NULL'
+            ]);
+            $txtx = "Kode ".$kode." berhasil ditambahkan ke packinglist ".$_posisi;
+            echo json_encode(array("statusCode"=>200, "psn"=>$txtx));
+        } else {
+            if($_posisi == "RJS"){
+                $txtx = "Kode ".$kode." berada di Rindang";
+                echo json_encode(array("statusCode"=>404, "psn"=>$txtx));
+            } else {
+                $txtx = "Kode ".$kode." sudah di ".$_posisi.".!";
+                echo json_encode(array("statusCode"=>404, "psn"=>$txtx));
+            }
+        }
+    } else {
+        $txtx = "Kode ".$kode." tidak ditemukan.!";
+        echo json_encode(array("statusCode"=>404, "psn"=>$txtx));
+    }
+}
 function inputstokrjsjual(){
     $kode = $this->input->post("selection");
     $kons = $this->input->post("kons");

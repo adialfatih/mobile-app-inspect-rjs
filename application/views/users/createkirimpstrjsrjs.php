@@ -172,18 +172,30 @@
         }
         function delpkg(kode){
             //peringatan('del'+kode);
-            $.ajax({
-                url:"<?=base_url();?>users2/delisi_jual",
-                type: "POST",
-                data: {"kode" : kode},
-                cache: false,
-                success: function(dataResult){
-                    var dataResult = JSON.parse(dataResult);
-                    if(dataResult.statusCode==200){
-                        peringatan('Hapus kode '+dataResult.psn+'');
-                        loadisi();
-                    } 
-                }
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"<?=base_url();?>users2/delisi_jual",
+                    type: "POST",
+                    data: {"kode" : kode},
+                    cache: false,
+                    success: function(dataResult){
+                        var dataResult = JSON.parse(dataResult);
+                        if(dataResult.statusCode==200){
+                            peringatan('Hapus kode '+dataResult.psn+'');
+                            loadisi();
+                        } 
+                    }
+                });
+            }
             });
         }
         let personName = sessionStorage.getItem("userName");

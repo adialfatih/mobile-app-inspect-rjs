@@ -63,7 +63,7 @@
     
     <div class="container">
         <div class="form-label">
-            <small>Ketik dan pilih kode roll untuk menambahkan ke dalam paket</small>
+            <small>Ketik dan pilih kode roll untuk menambahkan ke dalam paket BC</small>
         </div>
         <div class="form-label">
             <label for="autoComplete">Kode Roll</label>
@@ -127,20 +127,19 @@
                         const selection = event.detail.selection.value;
                         autoCompleteJS.input.value = selection;
                         //suksestoast(''+selection);
+                        console.log(kons+' - '+pkg+' - '+selection);
                         $.ajax({
-                            url:"<?=base_url();?>users2/inputstokrjsjual",
+                            url:"<?=base_url();?>users2/inputstokrjsjualbc",
                             type: "POST",
                             data: {"selection" : selection, "kons" : kons, "pkg" : pkg, "siap_jual":siap_jual},
                             cache: false,
                             success: function(dataResult){
                                 var dataResult = JSON.parse(dataResult);
-                                if(dataResult.statusCode==200){
-                                    //suksestoast('Add '+selection+'');
+                                if(dataResult.statusCode==200){                                    
                                     autoCompleteJS.input.value = '';
                                     loadisi();
                                     Swal.fire('Success','Menambahkan Kode '+selection+'','success');
                                 } else {
-                                    //peringatan(''+dataResult.psn+'');
                                     Swal.fire('Gagal',dataResult.psn,'error');
                                 }
                             }
@@ -151,16 +150,16 @@
         });
         function sechange(selection){
             $.ajax({
-                            url:"<?=base_url();?>users2/inputstokrjsjual",
+                            url:"<?=base_url();?>users2/inputstokrjsjualbc",
                             type: "POST",
-                            data: {"selection" : selection, "kons" : kons, "pkg" : pkg, "tipee":"1"},
+                            data: {"selection" : selection,  "pkg" : pkg},
                             cache: false,
                             success: function(dataResult){
                                 var dataResult = JSON.parse(dataResult);
-                                if(dataResult.statusCode==200){
-                                    Swal.fire('Success','Menambahkan Kode '+selection+'','success');
+                                if(dataResult.statusCode==200){                                    
                                     autoCompleteJS.input.value = '';
                                     loadisi();
+                                    Swal.fire('Success','Menambahkan Kode '+selection+'','success');
                                 } else {
                                     Swal.fire('Gagal',dataResult.psn,'error');
                                 }
@@ -169,19 +168,32 @@
         }
         function delpkg(kode){
             //peringatan('del'+kode);
-            $.ajax({
-                url:"<?=base_url();?>users2/delisi_jual",
-                type: "POST",
-                data: {"kode" : kode},
-                cache: false,
-                success: function(dataResult){
-                    var dataResult = JSON.parse(dataResult);
-                    if(dataResult.statusCode==200){
-                        peringatan('Hapus kode '+dataResult.psn+'');
-                        loadisi();
-                    } 
-                }
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"<?=base_url();?>users2/delisi_jual",
+                    type: "POST",
+                    data: {"kode" : kode},
+                    cache: false,
+                    success: function(dataResult){
+                        var dataResult = JSON.parse(dataResult);
+                        if(dataResult.statusCode==200){
+                            peringatan('Hapus kode '+dataResult.psn+'');
+                            loadisi();
+                        } 
+                    }
+                });
+            }
             });
+            
         }
         let personName = sessionStorage.getItem("userName");
         document.getElementById('nmoptid').innerHTML = ''+personName;
